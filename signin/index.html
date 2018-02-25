@@ -47,8 +47,16 @@
         Login with {{ inputEmail }}
       </div>
 
-    </div> <!-- /container -->
 
+      <div id="vtext">
+        <h2 v-text="description">
+        </h2>
+        <div v-html="descriptionWithHTML">
+        </div>
+
+      </div>
+
+    </div> <!-- /container -->
 
     <!-- VUE core JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
@@ -60,6 +68,8 @@
           inputEmail: '',
           inputPassword: '',
           formSubmited: false,
+          description: 'Una description',
+          descriptionWithHTML: '<h3>Otra description</h3>'
         },
         methods: {
           isFormValid: function () {
