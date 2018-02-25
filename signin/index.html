@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div id="app" class="container">
+      <div id="form"
+           v-if="!formSubmited"
+        >
+        <form class="form-signin"
+          v-on:submit.prevent="submitForm"  
+          >
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input v-model="inputEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input v-model="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" disabled type="submit"
+                  v-bind:disabled="!isFormValid()"
+          >Sign in</button>
+        </form>
+      </div>
+
+      <div id="login-success"
+        v-else
+        >
+        Login with {{ inputEmail }}
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- VUE core JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script type="text/javascript">
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          inputEmail: '',
+          inputPassword: '',
+          formSubmited: false,
+        },
+        methods: {
+          isFormValid: function () {
+            return this.inputEmail != "" 
+          },
+          submitForm: function () {
+            if ( !this.isFormValid() ) return;
+            
+            this.formSubmited = true;
+          },
+
+        }
+      })
+    </script>
+  </body>
+</html>
