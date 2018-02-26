@@ -29,6 +29,9 @@
     <!-- VUE core JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script type="text/javascript">
+      Vue.filter( 'title' ,function (value, title) {
+            return title+' ' + value;
+          });
 
       var app = new Vue({
         el: '#app',
@@ -42,9 +45,6 @@
           upper: function (value) {
             return value.toUpperCase();
           },
-          title: function (value, title) {
-            return title+' ' + value;
-          }
         }
       })
     </script>
