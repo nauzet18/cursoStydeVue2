@@ -17,14 +17,21 @@
     <div id="app" class="container">
       {{ $data}}
 
+      <h3>
+        Tareas finalizadas
+      </h3>
       <ul>
-        <li v-for="(item, index) of tasks">
-          <del v-if="!item.pendiente">
-            {{index + 1 }}: {{item.title}}
-          </del>
-          <template v-else>
-            {{index + 1 }}: {{item.title}}
-          </template>
+        <li v-for="(item, index) of tasks" v-if="!item.pendiente">
+          {{index + 1 }}: {{item.title}}
+        </li>
+      </ul>
+
+      <h3>
+        Tareas pendientes
+      </h3>
+      <ul>
+        <li v-for="(item, index) of tasks" v-if="item.pendiente">
+          {{index + 1 }}: {{item.title}}
         </li>
       </ul>
 
