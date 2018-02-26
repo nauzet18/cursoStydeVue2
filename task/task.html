@@ -18,8 +18,13 @@
       {{ $data}}
 
       <ul>
-        <li v-for="(task, index) of tasks">
-          {{index + 1 }}: {{task}}
+        <li v-for="(item, index) of tasks">
+          <del v-if="!item.pendiente">
+            {{index + 1 }}: {{item.title}}
+          </del>
+          <template v-else>
+            {{index + 1 }}: {{item.title}}
+          </template>
         </li>
       </ul>
 
@@ -34,10 +39,19 @@
         el: '#app',
         data: {
           tasks:  [
-            'tarea 1',
-            'tarea 2',
-            'tarea 3',
-            'tarea 4',
+            {
+              title: 'tarea 1',
+              pendiente: false,
+            },
+            {
+              title: 'tarea 2',
+              pendiente: true,
+            },
+            {
+              title: 'tarea 3',
+              pendiente: false,
+            },
+            
           ]
         },
 
