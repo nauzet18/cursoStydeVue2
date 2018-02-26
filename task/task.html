@@ -46,6 +46,14 @@
         </ul>
       </template >
 
+      <h3>
+        Recorriendo con un for los atributos de un objeto
+      </h3>
+      <ul>
+        <li v-for="(value, key, index) of user" >
+          {{index }}: {{key}}: {{value}}
+        </li>
+      </ul>
 
     </div> <!-- /container -->
 
@@ -70,7 +78,13 @@
               pendiente: false,
             },
             
-          ]
+          ],
+          user: {
+            name: "nauzet",
+            surname: "melian",
+            age: "30+",
+            status: "free",
+          }
         },
         computed: {
           tareasPendientes: function () {
