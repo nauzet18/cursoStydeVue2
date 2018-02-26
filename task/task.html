@@ -45,12 +45,14 @@
           </li>
         </ul>
       </template >
+      <h3>Añadir tarea con v-on y distintos eventos</h3>
       <input type="text" class="form-control" 
              v-model="newTask"
              v-on:keyup.enter="createTask"
              >
       <button v-on:click="createTask" class="btn btn-primary" >Crear tarea</button>
 
+      <h3>Añadir tarea con un formulario de manera tradicional</h3>
       <form v-on:submit="createTaskSubmit" >
         <input type="text" class="form-control" 
                v-model="newTask"
@@ -59,6 +61,14 @@
 
       </form>
 
+      <h3>Añadir tarea con un formulario pero haciendo de manera implicita el preventDefault y usando el alias @ de v-on</h3>
+      <form @submit.prevent="createTaskSubmitPreventImplicito" >
+        <input type="text" class="form-control" 
+               v-model="newTask"
+               >
+        <button class="btn btn-primary" >Crear tarea</button>
+
+      </form>
 
 
       <h3>
@@ -120,6 +130,12 @@
           },
           createTaskSubmit: function (e) {
             e.preventDefault();
+            if ( this.newTask == '' ) return;
+
+            this.tasks.push( { title: this.newTask, pendiente: true });
+            this.newTask = '';
+          },
+          createTaskSubmitPreventImplicito: function () {
             if ( this.newTask == '' ) return;
 
             this.tasks.push( { title: this.newTask, pendiente: true });
