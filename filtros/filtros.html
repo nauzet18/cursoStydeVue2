@@ -18,10 +18,11 @@
 
 
       <div id="vtext">
-        <h2>
+        <h2 v-bind:title="name | upper">
           Hola {{ name | upper | title('Mr.')}}
         </h2>
         {{ 1000.234 | money }}
+
       </div>
 
     </div> <!-- /container -->
