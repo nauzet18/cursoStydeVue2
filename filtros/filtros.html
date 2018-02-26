@@ -19,7 +19,7 @@
 
       <div id="vtext">
         <h2>
-          Hola {{ name | upper | title}}
+          Hola {{ name | upper | title('Mr.')}}
         </h2>
         
       </div>
@@ -42,8 +42,8 @@
           upper: function (value) {
             return value.toUpperCase();
           },
-          title: function (value) {
-            return 'Mr. ' + value;
+          title: function (value, title) {
+            return title+' ' + value;
           }
         }
       })
