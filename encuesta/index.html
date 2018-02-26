@@ -38,7 +38,9 @@
           </div>
 
           <div class="form-group"
-               :class="{ 'has-danger': descriptionError }" v-if="vue.years <= 1">
+               :class="{ 'has-danger': descriptionError }" v-if="vue.years <= 1"
+               :style="[{color: '#44a942'}, descriptionErrorColor]"
+               >
             <label class="col-form-label">Que te motivo</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
             <div v-if="isDescriptionValid()" >
@@ -84,11 +86,17 @@
             if ( this.vue.description.length >10 )
               return 'El campo no debe tener mas de 10 caractres';
 
+          },
+          descriptionErrorColor: function  () {
+            if ( this.descriptionError )
+              return {color: 'blue'};
+
+            return {color: 'yellow'};
           }
         },
         methods: {
           isDescriptionValid: function () {
-            return this.descriptionError != ""
+            return this.vue.descriptionError != ""
           },
 
         }
