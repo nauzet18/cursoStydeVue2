@@ -35,6 +35,15 @@
         </li>
       </ul>
 
+      <h3>
+        Tareas pendientes usando el filter definido en tareasPendientes
+      </h3>
+      <ul>
+        <li v-for="(item, index) of tareasPendientes">
+          {{index + 1 }}: {{item.title}}
+        </li>
+      </ul>
+
 
     </div> <!-- /container -->
 
@@ -60,6 +69,15 @@
             },
             
           ]
+        },
+        computed: {
+          tareasPendientes: function () {
+            //NOTA; aqui se define un nuevo array q contiene solo las tareas pendientes.
+            return this.tasks.filter(function ( task) {
+              return task.pendiente;
+            } );
+          },
+
         },
 
       })
