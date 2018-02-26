@@ -51,6 +51,16 @@
              >
       <button v-on:click="createTask" class="btn btn-primary" >Crear tarea</button>
 
+      <form v-on:submit="createTaskSubmit" >
+        <input type="text" class="form-control" 
+               v-model="newTask"
+               >
+        <button class="btn btn-primary" >Crear tarea</button>
+
+      </form>
+
+
+
       <h3>
         Recorriendo con un for los atributos de un objeto
       </h3>
@@ -107,7 +117,14 @@
 
             this.tasks.push( { title: this.newTask, pendiente: true });
             this.newTask = '';
-          }
+          },
+          createTaskSubmit: function (e) {
+            e.preventDefault();
+            if ( this.newTask == '' ) return;
+
+            this.tasks.push( { title: this.newTask, pendiente: true });
+            this.newTask = '';
+          },
         }
 
       })
