@@ -33,12 +33,12 @@
         <template v-if="vue.exp">
 
           <div class="form-group">
-            <label for="motivo">Cuantos años llevas trabajando?</label>
+            <label class="col-form-label">Cuantos años llevas trabajando?</label>
             <input class="form-control" type="text" name="years" id="years" v-model="vue.years" >
           </div>
 
-          <div class="form-group" v-if="vue.years <= 1">
-            <label for="motivo">Que te motivo</label>
+          <div :class="'form-group '+( descriptionError ?'has-danger':'')" v-if="vue.years <= 1">
+            <label class="col-form-label">Que te motivo</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
             <div v-if="isDescriptionValid()" >
               {{ descriptionError }}
@@ -46,8 +46,8 @@
 
           </div>
 
-          <div class="form-group" v-else>
-            <label for="description">Cuentame tu experiencia</label>
+          <div :class="'form-group '+(descriptionError? 'has-danger':'')" v-else>
+            <label class="col-form-label">Cuentame tu experiencia</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
             <div v-if="isDescriptionValid()" >
               {{ descriptionError }}
