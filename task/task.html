@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Encuesta</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <div id="app" class="container">
+      {{ $data}}
+
+      <ul>
+        <li v-for="(task, index) of tasks">
+          {{index + 1 }}: {{task}}
+        </li>
+      </ul>
+
+
+    </div> <!-- /container -->
+
+    <!-- VUE core JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script type="text/javascript">
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          tasks:  [
+            'tarea 1',
+            'tarea 2',
+            'tarea 3',
+            'tarea 4',
+          ]
+        },
+
+      })
+    </script>
+  </body>
+</html>
