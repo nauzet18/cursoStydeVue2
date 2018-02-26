@@ -40,11 +40,18 @@
           <div class="form-group" v-if="vue.years <= 1">
             <label for="motivo">Que te motivo</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
+            <div v-if="isDescriptionValid()" >
+              Necesito que rellene el campo y que no sa de mas de 1000 caractres
+            </div>
+
           </div>
 
           <div class="form-group" v-else>
             <label for="description">Cuentame tu experiencia</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
+            <div v-if="isDescriptionValid()" >
+              Necesito que rellene el campo y que no sa de mas de 10 caractres
+            </div>
           </div>
         </template >
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -69,6 +76,9 @@
           }
         },
         methods: {
+          isDescriptionValid: function () {
+            return this.vue.description == "" || this.vue.description.length >10
+          },
 
         }
       })
