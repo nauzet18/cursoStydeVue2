@@ -32,7 +32,9 @@
       </h3>
       <ul>
         <li v-for="(item, index) of tasks" v-if="!item.pendiente">
-          {{index + 1 }}: {{item.title}}
+          {{index + 1 }}: {{item.title}} 
+          <span @click.once="togglePendiente(item, $event)">
+            >Desfinalizar </span>
         </li>
       </ul>
 
