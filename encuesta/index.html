@@ -41,7 +41,7 @@
             <label for="motivo">Que te motivo</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
             <div v-if="isDescriptionValid()" >
-              Necesito que rellene el campo y que no sa de mas de 1000 caractres
+              {{ descriptionError }}
             </div>
 
           </div>
@@ -50,7 +50,7 @@
             <label for="description">Cuentame tu experiencia</label>
             <textarea class="form-control" rows="3" v-model="vue.description"></textarea>
             <div v-if="isDescriptionValid()" >
-              Necesito que rellene el campo y que no sa de mas de 10 caractres
+              {{ descriptionError }}
             </div>
           </div>
         </template >
@@ -72,6 +72,17 @@
             exp: false,
             years: 0,
             description: '',
+
+          }
+        },
+        computed: {
+          descriptionError: function ()
+          {
+            if ( this.vue.description == "" )
+              return 'El campo es obligatorio';
+
+            if ( this.vue.description.length >10 )
+              return 'El campo no debe tener mas de 10 caractres';
 
           }
         },
