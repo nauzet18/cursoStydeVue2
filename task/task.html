@@ -18,6 +18,16 @@
       {{ $data}}
 
       <h3>
+        Todas las tareas
+      </h3>
+      <ul>
+        <li v-for="(item, index) of tasks" @click="togglePendiente(item, $event)">
+          {{index + 1 }}: {{item.title}}: {{item.pendiente}}
+        </li>
+      </ul>
+
+
+      <h3>
         Tareas finalizadas
       </h3>
       <ul>
@@ -154,6 +164,9 @@
             this.tasks.push( { title: this.newTask, pendiente: pendiente });
             this.newTask = '';
           },
+          togglePendiente: function (task, event ) {
+            task.pendiente = !task.pendiente;
+          }
 
         }
 
