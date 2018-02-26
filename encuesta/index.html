@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Encuesta</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <div id="app" class="container">
+      {{ $data}}
+      <form class="form-encuesta">
+
+        <div class="form-group">
+          <h4> Has trabajado con vue? </h4>
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" v-model="vue.exp" :value="true">
+            Si
+          </label>
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" v-model="vue.exp" :value="false">
+            No
+          </label>
+        </div>
+
+        <div class="form-group" v-if="vue.exp">
+          <label for="motivo">Cuantos años llevas trabajando?</label>
+          <input class="form-control" type="text" name="years" id="years" v-model="vue.years" >
+        </div>
+
+        <div class="form-group">
+          <label for="motivo">Que te motivo</label>
+          <textarea class="form-control" id="motivo" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cuentaexperiencia">Cuentame tu experiencia</label>
+          <textarea class="form-control" id="cuentaexperiencia" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+      </form>
+
+    </div> <!-- /container -->
+
+    <!-- VUE core JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script type="text/javascript">
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          vue: {
+            exp: false,
+            years: 0,
+          }
+        },
+        methods: {
+
+        }
+      })
+    </script>
+  </body>
+</html>
