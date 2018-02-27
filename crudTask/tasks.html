@@ -22,23 +22,42 @@
             <h2>Tareas</h2>
 
             <ul class="list-group tasks">
-                <li class="list-group-item">
-                    <a href="#"><span class="glyphicon glyphicon-unchecked"
-                                      aria-hidden="true"></span></a>
-
-                    <span class="description">Aprender Vue.js</span>
-
-                    <div>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-edit"
-                                  aria-hidden="true"></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-trash"
-                                  aria-hidden="true"></span>
-                        </a>
-                    </div>                    
+                <li class="list-group-item" v-for="task in tasks"
+                    :class="{editing: task.editing, completed: !task.pendding }"
+                    >
+                    <a href="#">
+                        <span class="glyphicon"
+                              :class="(task.pendding)?'glyphicon-unchecked':'glyphicon-check'"
+                              aria-hidden="true"></span>
+                    </a>
+                    <template v-if="!task.editing">
+                        <span class="description"> {{task.description}} </span>
+                        <div>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-edit"
+                                      aria-hidden="true"></span>
+                            </a>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-trash"
+                                      aria-hidden="true"></span>
+                            </a>
+                        </div>                    
+                    </template>
+                    <template v-else>
+                        <input type="text" v-model="task.description">
+                        <div>                
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok"
+                                      aria-hidden="true"></span>
+                            </a>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove"
+                                      aria-hidden="true"></span>
+                            </a>
+                        </div>                        
+                    </template>
                 </li>
+                <!--
                 <li class="list-group-item editing">
                     <a href="#"><span 
                         class="glyphicon glyphicon-unchecked"
@@ -74,6 +93,7 @@
                         </a>
                     </div>   
                 </li>
+                -->
             </ul>
 
             <form class="new-task-form">
@@ -87,12 +107,7 @@
         </div>
 
         <script src="https://unpkg.com/vue@2.1.8/dist/vue.js"></script>
-
-        <script>
-            var vm = new Vue({
-                el: '#app'
-            });
-        </script>
+        <script src="app.js"></script>
   </body>
 </html>
 
