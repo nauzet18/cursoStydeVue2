@@ -1,6 +1,7 @@
 var vm = new Vue({
     el: '#app',
     data: {
+        draft: '',
         newTaskDescription: '',
         tasks: [
             {
@@ -11,7 +12,7 @@ var vm = new Vue({
             {
                 description: 'Suscribirse en Styde',
                 pendding: true,
-                editing: true,
+                editing: false,
             },
             {
                 description: 'Crear una API',
@@ -30,6 +31,39 @@ var vm = new Vue({
             });
          
             this.newTaskDescription = '';            
-        }
+        },
+        toggleStatus: function (task) {
+
+            task.pendding = !task.pendding;
+        },
+        editTask: function (task) {
+
+            this.draft = task.description;
+            this.tasks.forEach( function (task) {
+                task.editing = false;
+            });
+
+            task.editing = true;
+        },
+        discardTask: function (task) {
+
+            task.editing = false;
+        },
+        updateTask: function (task) {
+
+            task.description = this.draft;
+            task.editing = false;
+        },
+        deleteTask: function (index) {
+
+            this.tasks.splice(index, 1);
+        },
+        deleteCompleted: function () {
+
+            this.tasks = this.tasks.filter( function (task) {
+                return task.pendding;
+            }
+            );
+        },
     }
 });

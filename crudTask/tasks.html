@@ -22,10 +22,10 @@
             <h2>Tareas</h2>
 
             <ul class="list-group tasks">
-                <li class="list-group-item" v-for="task in tasks"
+                <li class="list-group-item" v-for="(task, index) in tasks"
                     :class="{editing: task.editing, completed: !task.pendding }"
                     >
-                    <a href="#">
+                    <a @click="toggleStatus(task)" >
                         <span class="glyphicon"
                               :class="(task.pendding)?'glyphicon-unchecked':'glyphicon-check'"
                               aria-hidden="true"></span>
@@ -33,68 +33,34 @@
                     <template v-if="!task.editing">
                         <span class="description"> {{task.description}} </span>
                         <div>
-                            <a href="#">
+                            <a @click="editTask(task)" >
                                 <span class="glyphicon glyphicon-edit"
                                       aria-hidden="true"></span>
                             </a>
-                            <a href="#">
+                            <a @click="deleteTask(index)" >
                                 <span class="glyphicon glyphicon-trash"
                                       aria-hidden="true"></span>
                             </a>
                         </div>                    
                     </template>
                     <template v-else>
-                        <input type="text" v-model="task.description">
+                        <input type="text" v-model="draft">
                         <div>                
-                            <a href="#">
+                            <a @click="updateTask(task)" >
                                 <span class="glyphicon glyphicon-ok"
                                       aria-hidden="true"></span>
                             </a>
-                            <a href="#">
+                            <a @click="discardTask(task)" >
                                 <span class="glyphicon glyphicon-remove"
                                       aria-hidden="true"></span>
                             </a>
                         </div>                        
                     </template>
                 </li>
-                <!--
-                <li class="list-group-item editing">
-                    <a href="#"><span 
-                        class="glyphicon glyphicon-unchecked"
-                        aria-hidden="true"></span></a>
-
-                    <input type="text" value="Suscribirse en Styde">
-
-                    <div>                
-                        <a href="#">
-                            <span class="glyphicon glyphicon-ok"
-                                  aria-hidden="true"></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-remove"
-                                  aria-hidden="true"></span>
-                        </a>
-                    </div>
-                </li>
-                <li class="list-group-item completed">
-                    <a href="#"><span class="glyphicon glyphicon-check"
-                                      aria-hidden="true"></span></a>
-
-                    <span class="description">Crear una API</span>
-
-                    <div>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-edit"
-                                  aria-hidden="true"></span>
-                        </a>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-trash"
-                                  aria-hidden="true"></span>
-                        </a>
-                    </div>   
-                </li>
-                -->
             </ul>
+            <p>
+                <a @click="deleteCompleted()">Eliminar tareas completadas</a>
+            </p>
 
             <form class="new-task-form" 
                   @submit.prevent="createTask" 
