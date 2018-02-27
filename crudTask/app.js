@@ -1,6 +1,7 @@
 var vm = new Vue({
     el: '#app',
     data: {
+        newTaskDescription: '',
         tasks: [
             {
                 description: 'Aprender Vue.js',
@@ -19,4 +20,16 @@ var vm = new Vue({
             },
         ],
     },
+    methods: {
+        createTask: function (e) {
+
+            this.tasks.push({
+                description: this.newTaskDescription,
+                pendding: true,
+                editing: false
+            });
+         
+            this.newTaskDescription = '';            
+        }
+    }
 });
